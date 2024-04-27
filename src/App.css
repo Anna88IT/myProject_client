@@ -1,0 +1,52 @@
+
+.add_book_page{
+  margin: 0 auto;
+  width: 100vw;
+  height: 100vh;
+  background-color: #fff7cb;
+  text-align: center;
+  padding-top: 10px;
+}
+.add_book_form{
+  margin: 10px auto;
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+}
+
+.add_book_label{
+  font-size: 15px;
+  color: gray;
+  font-style: italic;
+}
+
+.add_book_title{
+  color: #000061;
+}
+
+.add_book_add{
+  height: 25px;
+  width: 70px;
+  background-color: rgba(146, 154, 255, 0.66);
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+}
+
+.add_book_input{
+  border-radius: 4px;
+  padding-left: 5px;
+}
+.add_book_div{
+  width: 300px;
+  display: flex;
+  justify-content: space-between;
+}
+.add_book_textarea{
+  width: 166px;
+  height: 80px;
+  border-radius: 4px;
+}
