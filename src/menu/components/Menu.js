@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import "../styles/menu.css";
 
-export const Menu = (props) => {
+export const Menu = () => {
     const [genres, setGenres] = useState();
     const [isOpen, setIsOpen] = useState(false);
 
@@ -14,27 +14,27 @@ export const Menu = (props) => {
 
     const handleLogin = () => {
         setIsOpen(!isOpen);
-        sendIsOpenToParent(!isOpen);
+        // sendIsOpenToParent(!isOpen);
+        
     };
-
-    const sendIsOpenToParent = (isOpen) => {
-        // Call the function passed from the parent component
-        if (typeof props.onIsOpenChange === 'function') {
-            props.onIsOpenChange(isOpen);
-        }
-    };
+    //
+    // const sendIsOpenToParent = (isOpen) => {
+    //     // Call the function passed from the parent component
+    //     if (typeof props.onIsOpenChange === 'function') {
+    //         props.onIsOpenChange(isOpen);
+    //     }
+    // };
 
     return (
             <div className="menu">
                 <nav>
                       <ul>
                           <li className="menu_font"> <Link to="/">Home</Link> </li>
-                          <li className="menu_font"><Link to="/books">Books</Link>
+                          <li className="menu_font">Books
                               <ul className="underList">
                                   {genres && genres.map(genre => (
-                                      <li key={genre.id}><Link to="/books/adventure" className="link">{genre.genre}</Link></li>
-                                  ))}
-                                  
+                                      <li id={genre.id} key={genre.id}><Link to={`/byGenre/${genre.id}`} className="link">{genre.genre}</Link></li>
+                                  ))}                                  
                               </ul>
                           </li>
                       </ul>
@@ -66,7 +66,7 @@ export const Menu = (props) => {
                           <li className="menu_font"> <Link to="/about">About</Link> </li>
                           <li className="menu_font"> <Link to="/contactus">Contact us</Link> </li>
                           <li className="menu_font"><Link to="/registration" >Sign up</Link></li>
-                          <li className="menu_font" onClick={handleLogin}>Sign in</li>
+                          <li className="menu_font" ><Link to="/login" >Sign in</Link></li>
                       </ul>
                         </nav>
                     </div>

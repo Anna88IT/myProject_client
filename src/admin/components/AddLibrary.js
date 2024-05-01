@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import {Menu} from "../../menu/components/Menu";
 
 export const AddLibrary = () =>{
     
@@ -42,7 +41,6 @@ export const AddLibrary = () =>{
   
     return(
         <>
-            <Menu />
             <div className="add_book_page">
                 <h1 className="add_book_title">Add Library</h1>
                 <form className="add_book_form" onSubmit={handleAdd}>

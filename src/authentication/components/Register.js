@@ -16,7 +16,7 @@ export const Register = () => {
 
     const handleSubmit =async (e) => {
         e.preventDefault();
-       await fetch("http://localhost:5000/register", {
+       await fetch("http://localhost:5000/auth/register", {
             method:"POST",
             headers: {
                 "Content-type": "application/json"
@@ -26,7 +26,7 @@ export const Register = () => {
             console.error(err)
         })
         setUser({firstName: "", lastName: "", email: "", phoneNumber: "", password: ""});
-        navigate("/");
+        navigate("/login");
         console.log(user, "lllll");
     }
 

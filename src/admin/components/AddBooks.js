@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from "react";
-import {Menu} from "../../menu/components/Menu";
 
 export const AddBooks = () => {
     const [bookData, setBookData] = useState({
@@ -52,13 +51,23 @@ export const AddBooks = () => {
             console.error(err)
 
         })
-
+        setBookData({
+            bookTitle: "",
+            author: "",
+            releaseYear: "",
+            language: "",
+            description: "",
+            genre_id: "",
+            library_id: "",
+            count: "",
+            price: "",
+            img: ""
+        })
         console.log(bookData);
     }
 
     return(
         <>
-            <Menu />
             <div className="add_book_page">
                 <h1 className="add_book_title">Add books</h1>
                 <form className="add_book_form" onSubmit={handleSubmit}>

@@ -1,10 +1,13 @@
 import React, {useEffect, useState} from "react";
 import "../styles/login.css"
+import {useNavigate} from "react-router-dom";
 
 export const Login = () => { 
     
     const [loginData, setLoginData] = useState({email: "", password: ""});
     const [isAuth, setIsAuth] = useState(false);
+    const navigate = useNavigate();
+
     const handleOnChange = (e) => {
         const {name, value} = e.target;
         setLoginData((prevUser) => ({
@@ -14,23 +17,35 @@ export const Login = () => {
         console.log(loginData.item, "item");
         console.log(loginData, "lkjahsdfh")
     };
-    useEffect(() => {
-        fetch("http://localhost:5000/login")
-            .then(res => res.json())
-            .then(data => setIsAuth(data));
-    }, [])
+    // useEffect(() => {
+    //     fetch("http://localhost:5000/auth/login")
+    //         .then(res => res.json())
+    //         .then(data => setIsAuth(data));
+    // }, [])
 
     const handleSubmit =async (e) => {
         e.preventDefault();
-        await fetch("http://localhost:5000/login", {
-            method:"POST",
-            headers: {
-                "Content-type": "application/json"
-            },
-            body: JSON.stringify(loginData)
-        }).catch((err) => {
-            console.error(err)
-        });
+        try {
+            const response =  await fetch("http://localhost:5000/auth/login", {
+                method:"POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(loginData)
+            }).catch((err) => {
+                console.error(err)
+            });
+            if (response.ok) {
+                setIsAuth(true);
+                navigate("/");
+                console.log(response);
+                console.log('Login successful');
+            } else {
+                console.error('Login failed');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
 
         console.log(loginData, "lllll");
     }
@@ -51,7 +66,7 @@ export const Login = () => {
 
 
                 <div>
-                    <button className="add_book_add" type="submit" >Login</button>
+                    <button className="login" type="submit" >Login</button>
                 </div>
             </form>
         </div>

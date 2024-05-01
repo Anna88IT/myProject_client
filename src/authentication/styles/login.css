@@ -6,6 +6,7 @@
     top: 50px;
     border: 1px dashed blue;
     border-radius: 4px;
+    background-color: #8aaded;
 }
 input{
     display: flex;
@@ -17,3 +18,11 @@ form{
     flex-direction: column;
     gap: 5px;
 }
+.login{
+    background-color: #3b3461;
+    border-radius: 4px;
+    border: none;
+}
+.login:hover{
+    border: 2px solid #0f0712;
+ }
