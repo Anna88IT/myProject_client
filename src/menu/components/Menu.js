@@ -6,6 +6,7 @@ export const Menu = () => {
     const [genres, setGenres] = useState();
     const [isOpen, setIsOpen] = useState(false);
 
+
     useEffect(() => {
         fetch("http://localhost:5000/genre")
             .then((res) => res.json())
@@ -15,7 +16,7 @@ export const Menu = () => {
     const handleLogin = () => {
         setIsOpen(!isOpen);
         // sendIsOpenToParent(!isOpen);
-        
+
     };
     //
     // const sendIsOpenToParent = (isOpen) => {
@@ -34,7 +35,7 @@ export const Menu = () => {
                               <ul className="underList">
                                   {genres && genres.map(genre => (
                                       <li id={genre.id} key={genre.id}><Link to={`/byGenre/${genre.id}`} className="link">{genre.genre}</Link></li>
-                                  ))}                                  
+                                  ))}
                               </ul>
                           </li>
                       </ul>

@@ -10,6 +10,7 @@ import React from "react";
 import {Menu} from "./menu/components/Menu";
 import {AllBooksByName} from "./home/components/AllBooksByName";
 import {AllBooksByGenre} from "./home/components/AllBooksByGenre";
+import {GetBook} from "./home/components/GetBook";
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
                       <Route path = "/addlibrary" element={<AddLibrary />} />
                       <Route path = "/addbooks" element={<AddBooks />} />
                       <Route path = ":bookTitle" element={<AllBooksByName />} />
+                      <Route path = "/order/:id" element={<GetBook />} />
                       <Route path = "byGenre/:genre" element={<AllBooksByGenre />} />
                   </Routes>
               </Router>

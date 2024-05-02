@@ -31,22 +31,17 @@ export const Login = () => {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(loginData)
+                body: JSON.stringify(loginData),
+                credentials: 'include', // Ensure cookies are sent with the request
+                mode: 'cors' // Set request mode to 'cors'
             }).catch((err) => {
                 console.error(err)
             });
-            if (response.ok) {
-                setIsAuth(true);
-                navigate("/");
-                console.log(response);
-                console.log('Login successful');
-            } else {
-                console.error('Login failed');
-            }
+            console.log('Login successful');
+
         } catch (error) {
             console.error('Error:', error);
         }
-
         console.log(loginData, "lllll");
     }
     

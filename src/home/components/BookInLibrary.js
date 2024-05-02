@@ -1,9 +1,13 @@
 import React, {useEffect, useState} from "react";
 import img from "../img/book.jpg";
+import {Link, useNavigate} from "react-router-dom";
 
 export const BookInLibrary = (book) => {
     const [count, setCount] = useState(0);
+    const [startDate, setStartDate] = useState();
+    const [endDate, setEndDate] = useState();
 
+    const navigate = useNavigate();
 
     const handleAdd = () => {
         setCount(count + 1);
@@ -15,6 +19,18 @@ export const BookInLibrary = (book) => {
         }
     }
     console.log(book)
+
+    const handleChoose = (e) => {
+        e.preventDefault();
+        if(!startDate || !endDate || count === 0) {
+            alert("Ընտրեք գրքերի քանակը և ընթերցանության ժամանակահատվածը");
+        } else {
+            navigate("/getBook");
+            console.log(startDate, "start");
+            console.log(endDate, "end");
+        }
+    }
+
     return(
         <div className="container">
             <div className="image">
@@ -36,11 +52,11 @@ export const BookInLibrary = (book) => {
                 <div className="container_bottom">
                     <div>
                         <label>Start date</label>
-                        <input type="date"/>
+                        <input type="date" onChange={(e) => setStartDate(e.target.value)}/>
                     </div>
                     <div>
                         <label>End Date</label>
-                        <input type="date"/>
+                        <input type="date" onChange={(e) => setEndDate(e.target.value)} />
                     </div>
                     <div>
                         <div>
@@ -52,7 +68,7 @@ export const BookInLibrary = (book) => {
                             <span className="pl_mn" onClick={handleAdd}> + </span>
                         </div>
                     </div>
-                    <button className="choose">Choose</button>
+                    <button className="choose"><Link to={`/order/${book.book.id}`}>Choose</Link></button>
                 </div>
             </div>
 

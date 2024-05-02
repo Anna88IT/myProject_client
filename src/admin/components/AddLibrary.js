@@ -36,7 +36,11 @@ export const AddLibrary = () =>{
             console.error(err)
         })
         console.log(libraryData);
-
+        setLibraryData({
+            name: "",
+            workingHours: [{startTime: "", endTime: ""}],
+            address: ""
+        })
     }
   
     return(
