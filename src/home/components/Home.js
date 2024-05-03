@@ -10,9 +10,13 @@ export const Home = () => {
     useEffect(() => {
         fetch("http://localhost:5000")
             .then((resp) => resp.json())
-            .then((data) => setBooks(data));
+            .then((data) => {
+                setBooks(data.books);
+                console.log(data);
+                console.log(data.books);
+                console.log(data.isAuthenticated, "home");
+            });
     }, [])
-console.log(books);
 
     return(
         <div className="home">

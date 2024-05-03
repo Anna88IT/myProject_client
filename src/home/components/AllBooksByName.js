@@ -13,7 +13,8 @@ export const AllBooksByName = (title) => {
         // const params = new URLSearchParams({ bookTitle: JSON.stringify(title) });       
         fetch(`http://localhost:5000?bookTitle=${bookTitle}`)
             .then(res => res.json())
-            .then(data => setBooks(data));
+            .then(data => {setBooks(data.books)
+            console.log(data.isAuthenticated, "auth in booksByName")});
     }, []);
 
      return (

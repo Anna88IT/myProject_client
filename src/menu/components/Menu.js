@@ -4,20 +4,30 @@ import "../styles/menu.css";
 
 export const Menu = () => {
     const [genres, setGenres] = useState();
-    const [isOpen, setIsOpen] = useState(false);
+    const [isAuth, setIsAuth] = useState();
 
 
     useEffect(() => {
         fetch("http://localhost:5000/genre")
             .then((res) => res.json())
             .then(data => setGenres(data));
+
+        fetch("http://localhost:5000")
+            .then((resp) => resp.json())
+            .then((data) => {
+                setIsAuth(data.isAuthenticated);
+                console.log(data, "in menu");
+                console.log(data.books, "in menu");
+                console.log(data.isAuthenticated, "in menu");
+
+            });
     }, []);
 
-    const handleLogin = () => {
-        setIsOpen(!isOpen);
-        // sendIsOpenToParent(!isOpen);
-
-    };
+    // const handleLogin = () => {
+    //     setIsOpen(!isOpen);
+    //     // sendIsOpenToParent(!isOpen);
+    //
+    // };
     //
     // const sendIsOpenToParent = (isOpen) => {
     //     // Call the function passed from the parent component
@@ -25,7 +35,12 @@ export const Menu = () => {
     //         props.onIsOpenChange(isOpen);
     //     }
     // };
-
+const handleLogOut = (e) => {
+    e.preventDefault();
+    fetch("http://localhost:5000/logout")
+        .then((res) => res.json())
+        .then(data => setIsAuth(false));
+}
     return (
             <div className="menu">
                 <nav>
@@ -66,8 +81,16 @@ export const Menu = () => {
                       <ul>
                           <li className="menu_font"> <Link to="/about">About</Link> </li>
                           <li className="menu_font"> <Link to="/contactus">Contact us</Link> </li>
-                          <li className="menu_font"><Link to="/registration" >Sign up</Link></li>
-                          <li className="menu_font" ><Link to="/login" >Sign in</Link></li>
+
+                          {
+                              isAuth ? <li className="menu_font">Log out</li> :
+                                  <>
+                                      <li className="menu_font"><Link to="/registration" >Sign up</Link></li>
+                                      <li className="menu_font" ><Link to="/login" >Log in</Link></li>
+                                  </>
+
+                          }
+
                       </ul>
                         </nav>
                     </div>

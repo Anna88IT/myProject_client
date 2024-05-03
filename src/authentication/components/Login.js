@@ -42,6 +42,7 @@ export const Login = () => {
         } catch (error) {
             console.error('Error:', error);
         }
+        navigate("/");
         console.log(loginData, "lllll");
     }
     

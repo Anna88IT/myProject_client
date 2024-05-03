@@ -25,7 +25,7 @@ export const BookInLibrary = (book) => {
         if(!startDate || !endDate || count === 0) {
             alert("Ընտրեք գրքերի քանակը և ընթերցանության ժամանակահատվածը");
         } else {
-            navigate("/getBook");
+            navigate(`/order/${book.book.id}`);
             console.log(startDate, "start");
             console.log(endDate, "end");
         }
@@ -68,7 +68,7 @@ export const BookInLibrary = (book) => {
                             <span className="pl_mn" onClick={handleAdd}> + </span>
                         </div>
                     </div>
-                    <button className="choose"><Link to={`/order/${book.book.id}`}>Choose</Link></button>
+                    <button className="choose" onClick={handleChoose}>Choose</button>
                 </div>
             </div>
 
