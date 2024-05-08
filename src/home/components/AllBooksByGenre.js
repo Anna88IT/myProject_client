@@ -3,13 +3,18 @@ import {Book} from "./Book";
 import {useParams} from "react-router-dom"
 
 export const AllBooksByGenre = () => {
-    const [books, setBooks] = useState();
+    const [books, setBooks] = useState([]);
     const{genre} = useParams();
     useEffect(() => {
         fetch(`http://localhost:5000?genre_id=${genre}`)
             .then(res => res.json())
-            .then(data => setBooks(data));
-    }, [genre])
+            .then(data => {
+                const isAuthenticated = data.isAuthenticated;
+                console.log(data.books[0], "data");
+                setBooks(data.books);
+                console.log(books); // Log updated state inside useEffect
+            });
+    }, [genre]);
 console.log(genre, "genre");
     return(
         <div className="home">
